@@ -2,56 +2,30 @@ import java.util.*;
 
     public class Soal02 {
         public static void main(String[] args) {
-            Scanner input = new Scanner(System.in);
-            Queue lq = new Queue();
-
-            char character;
-            System.out.println("Pilih Menu");
-            System.out.println("1. Menambah nama pekerjaan yang harus dilakukan");
-            System.out.println("2. Menampilkan nama pekerjaan yang harus diselesaikan terlebih dahulu");
-            System.out.println("3. Menghapus pekerjaan yang sudah diselesaikan");
-            System.out.println("4. Menampilkan seluruh isi to-do list");
-
-            do {
-                System.out.print("Pilih Menu: ");
-                int pilih = input.nextInt();
-                switch (pilih) {
-                    case 1:
-                        System.out.println("Masukkan nama pekerjaan: ");
-                        lq.insert(input.next());
-                        break;
-                    case 2:
-                        try {
-                            System.out.println("Peek Element = " + lq.peek());
-                        }
-
-                        catch (Exception e) {
-                            System.out.println("Error : " + e.getMessage());
-                        }
-                        break;
-                    case 3:
-                        try {
-                            System.out.println("Hapus Element = " + lq.remove());
-                        }
-
-                        catch (Exception e) {
-                            System.out.println("Error : " + e.getMessage());
-                        }
-                        break;
-                    case 4:
-                        Queue.printQueue();
-                        System.out.println();
-                        break;
-                    default:
-                        System.out.println("Salah Masukkan!");
-                        break;
+            QueueA<String> queue = new QueueA<>();
+            Scanner in = new Scanner(System.in);
+            int opsi = 0;
+            while(opsi != 4){
+                System.out.println("1. Masukkan Data");
+                System.out.println("2. Menghapus Data");
+                System.out.println("3. Print list");
+                System.out.println("4. Keluar");
+                opsi = in.nextInt();
+                if(opsi == 1){
+                    System.out.println("Silahkan Masukkan Data");
+                    String toDo = in.next();
+                    queue.enqueue(toDo);
+                    System.out.println();
                 }
-                lq.display();
-                System.out.println("Apakah ingin melanjutkan ('Ya' Atau 'Tidak') :");
-                character = input.next().charAt(0);
+                else if(opsi == 2){
+                    queue.dequeue();
+                    System.out.println("Berhasil Menghapus Tugas Pertama");
+                    System.out.println();
+                }
+                else if(opsi == 3){
+                    queue.printQueue();
+                    System.out.println();
+                }
             }
-
-            while (character == 'Y' || character == 'y');
-
         }
     }
