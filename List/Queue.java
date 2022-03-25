@@ -4,24 +4,29 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 
     public class Queue {
-                private Queue<E> queueList;
-        public QueueA() {
-            queueList = new LinkedList<E>();
+       private LinkList Todo;
+        public Queue() {
+            Todo=new LinkList();
         }
-        public void enqueue(E object) {
-            queueList.add(object);
+        
+        public void insert(String data) {
+            Todo.tambahkanData(data);
+            System.out.println("Todo Berhasil Ditambahkan");
         }
-        public E dequeue() throws NoSuchElementException {
-            return queueList.remove();
+        
+        public String delete() {
+            return Todo.hapusData();
         }
-        public boolean isEmpty() {
-            return queueList.isEmpty();
+        
+        public boolean isQueueEmpty() {
+            return Todo.isEmpty();
         }
-        public void printQueue() {
-            Iterator<E> iterator = queueList.iterator();
-            while (iterator.hasNext()) {
-                Object value = iterator.next();
-                System.out.println(value + " ");
-            }
+        
+        public void display() {
+            Todo.displayList();
+        }
+        
+        public String peek() {
+            return Todo.peekFirst();
         }
     }
