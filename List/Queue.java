@@ -1,63 +1,24 @@
 import java.util.*;
 
     public class Queue {
-        private Node front, rear;
-        private int size;
-
-        public Queue() {
-            front = null;
-            rear = null;
-            size = 0;
+                private Queue<E> queueList;
+        public QueueA() {
+            queueList = new LinkedList<E>();
         }
-
+        public void enqueue(E object) {
+            queueList.add(object);
+        }
+        public E dequeue() throws NoSuchElementException {
+            return queueList.remove();
+        }
         public boolean isEmpty() {
-            return front == null;
+            return queueList.isEmpty();
         }
-
-        public int getSize() {
-            return size;
-        }
-
-        public void insert (String data) {
-            Node bptr = new Node(data, null);
-            if (rear == null) {
-                front = bptr;
-                rear = bptr;
+        public void printQueue() {
+            Iterator<E> iterator = queueList.iterator();
+            while (iterator.hasNext()) {
+                Object value = iterator.next();
+                System.out.println(value + " ");
             }
-
-            else {
-                rear.setLink(bptr);
-                rear = rear.getLink();
-            }
-            size++;
-        }
-
-        public String remove() {
-            if(isEmpty()) throw new NoSuchElementException("Underflow Exception");
-            Node ptr = front;
-            front = ptr.getLink();
-            if (front == null)
-                rear = null;
-            size--;
-            return ptr.getData();
-        }
-
-        public String peek() {
-            if (isEmpty()) throw new NoSuchElementException("Underflow Exception");
-            return front.getData();
-        }
-
-        public void display() {
-            System.out.print("Menampilkan Nama Pekerjaan = ");
-            if (size == 0) {
-                System.out.print("Kosong");
-                return;
-            }
-            Node ptr = front;
-            while (ptr != rear.getLink()) {
-                System.out.print(ptr.getData() + " || ");
-                ptr = ptr.getLink();
-            }
-            System.out.println();
         }
     }
