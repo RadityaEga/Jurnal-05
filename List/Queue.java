@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.Queue;
 
     public class Queue {
                 private Queue<E> queueList;
