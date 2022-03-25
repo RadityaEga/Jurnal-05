@@ -39,7 +39,8 @@ import java.util.*;
                         }
                         break;
                     case 4:
-                        print();
+                        Queue.printQueue();
+                        System.out.println();
                         break;
                     default:
                         System.out.println("Salah Masukkan!");
