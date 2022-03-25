@@ -1,0 +1,63 @@
+import java.util.Scanner;
+import java.util.*;
+
+    public class Main {
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+            String notasi = "a+b*(c^d-e)^(f+g*h)-i";
+
+            System.out.println(konversi(notasi));
+        }
+
+        public static String konversi(String masukkan) {
+            String hasil = "";
+            Stack <Character> newStack = new Stack<>();
+
+            for (int j = 0; j < masukkan.length(); j++) {
+                char character = masukkan.charAt(j);
+
+                if (pangkat(character) > 0 ) {
+                    while(newStack.isEmpty() == false && pangkat(newStack.peek()) >= pangkat(character)) {
+                        hasil += newStack.pop();
+                    }
+                    newStack.push(character);
+                }
+
+                else if (character == ')') {
+                    char x = newStack.pop();
+
+                    while(x!='(') {
+                        hasil += x;
+                        x = newStack.pop();
+                    }
+                }
+
+                else if (character == '(') {
+                    newStack.push(character);
+                }
+
+                else {
+                    hasil += character;
+                }
+            }
+
+            for (int i = 0; i <= newStack.size(); i++) {
+                hasil += newStack.pop();
+            }
+
+            return hasil;
+        }
+            public static int pangkat (char ch) {
+                switch (ch) {
+                    case '+':
+                    case '-':
+                        return 1;
+                    case '*':
+                    case '/':
+                        return 2;
+                    case '^':
+                        return 3;
+                }
+                return -1;
+            }
+    }
